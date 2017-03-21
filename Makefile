@@ -21,7 +21,8 @@ main: $(OBJ)
 .PHONY: clean mrproper
 
 clean:
-	find . -name "./bin/main"    -exec rm {} \;
+	find ./bin -name main -exec rm {} \;
+	find ./src -name *.o  -exec rm {} \;
 
 mrproper: clean
 	rm $(EXEC)

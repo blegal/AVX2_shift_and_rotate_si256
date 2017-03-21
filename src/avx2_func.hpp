@@ -70,8 +70,10 @@ namespace avx2_func{
 	inline __m256i rotate_right(__m256i A)
 	{
 		if( N == 0 )       return A;
+		else if( N ==  8 ) return  _mm256_permute4x64_epi64 (A, 0x39);
 		else if( N  < 16 ) return (shift_right<N>(A) | shift_left<32 - N>(A));
 		else if( N == 16 ) return  _mm256_permute2x128_si256(A, A, 0x01);
+		else if( N == 24 ) return  _mm256_permute4x64_epi64 (A, 0x93);
 		else               return (shift_right<N>(A) | shift_left<32 - N>(A));
 	}
 	//
@@ -83,8 +85,10 @@ namespace avx2_func{
 	inline __m256i rotate_left(__m256i A)
 	{
 		if     ( N ==  0 ) return A;
+		else if( N ==  8 ) return  _mm256_permute4x64_epi64 (A, 0x93);
 		else if( N  < 16 ) return shift_right<32 - N>(A) | shift_left<N>(A);
 		else if( N == 16 ) return  _mm256_permute2x128_si256(A, A, 0x01);
+		else if( N == 24 ) return  _mm256_permute4x64_epi64 (A, 0x39);
 		else               return shift_right<32 - N>(A) | shift_left<N>(A);
 	}
 };
