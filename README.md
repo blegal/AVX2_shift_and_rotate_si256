@@ -1,6 +1,12 @@
 # Introduction
 
-This project delivers shift and rotate functions written in AVX2.
+This project delivers shift and rotate functions written in AVX2. They should
+correspond to:
+
+- _mm256_slli_si256
+- _mm256_srli_si256
+- _mm256_roli_si256
+- _mm256_rori_si256
 
 # Building
 
